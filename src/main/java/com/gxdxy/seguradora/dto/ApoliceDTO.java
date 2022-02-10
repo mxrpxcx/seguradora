@@ -9,9 +9,6 @@ import javax.validation.constraints.Size;
 public class ApoliceDTO {
 
 		@NotBlank
-		private String numero;
-		
-		@NotBlank
 		private LocalDateTime inicioVigencia;
 		
 		@NotBlank
@@ -23,5 +20,36 @@ public class ApoliceDTO {
 		
 		@NotBlank
 		private BigDecimal valor;
-	
+
+		public LocalDateTime getInicioVigencia() {
+			return inicioVigencia;
+		}
+
+		public void setInicioVigencia(LocalDateTime inicioVigencia) {
+			this.inicioVigencia = inicioVigencia;
+		}
+
+		public LocalDateTime getFimVigencia() {
+			return fimVigencia;
+		}
+
+		public void setFimVigencia(LocalDateTime fimVigencia) {
+			this.fimVigencia = fimVigencia;
+		}
+
+		public String getPlacaVeiculo() {
+			return placaVeiculo;
+		}
+
+		public void setPlacaVeiculo(String placaVeiculo) {
+			this.placaVeiculo = placaVeiculo;
+		}
+
+		public BigDecimal getValor() {
+			return valor;
+		}
+
+		public void setValor(BigDecimal valor) {
+			this.valor = valor;
+		}
 }

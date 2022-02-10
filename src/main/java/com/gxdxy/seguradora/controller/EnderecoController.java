@@ -1,10 +1,19 @@
 package com.gxdxy.seguradora.controller;
 
+import javax.validation.Valid;
+
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.gxdxy.seguradora.bean.Endereco;
+import com.gxdxy.seguradora.dto.EnderecoDTO;
 import com.gxdxy.seguradora.service.EnderecoService;
 
 @RestController
@@ -14,5 +23,14 @@ public class EnderecoController {
 
 	@Autowired
 	EnderecoService enderecoService;
+	
+	@PostMapping
+	public ResponseEntity<Object> salvar(@RequestBody @Valid EnderecoDTO enderecoDTO){
+		
+		Endereco endereco = new Endereco();
+		BeanUtils.copyProperties(enderecoDTO, endereco);;
+
+		return ResponseEntity.status(HttpStatus.CREATED).body(enderecoService.salvar(endereco));
+	}
 	
 }
