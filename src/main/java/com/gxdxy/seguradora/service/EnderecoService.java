@@ -1,4 +1,4 @@
-package com.gxdxy.seguradora.controller;
+package com.gxdxy.seguradora.service;
 
 import org.springframework.stereotype.Service;
 

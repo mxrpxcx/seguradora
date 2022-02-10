@@ -8,4 +8,6 @@ import com.gxdxy.seguradora.bean.Endereco;
 
 public interface EnderecoRepository extends JpaRepository<Endereco, UUID> {
 
+	
+	
 }
