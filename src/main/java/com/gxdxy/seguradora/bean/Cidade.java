@@ -7,7 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 @Table(name="tbCidade")
@@ -18,6 +22,10 @@ public class Cidade implements Serializable {
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private UUID id;
 	private String nome;
+	
+	@JsonManagedReference
+	@ManyToOne
+	@JoinColumn(name="fkUfCidade")
 	private UnidadeFederal unidadeFederal;
 	
 	public Cidade() {

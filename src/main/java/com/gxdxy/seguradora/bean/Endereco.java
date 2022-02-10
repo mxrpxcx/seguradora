@@ -7,7 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 @Entity
 @Table(name="tbEndereco")
@@ -23,7 +27,13 @@ public class Endereco implements Serializable {
 	private String bairro;
 	private String cep;
 	
+	@JsonBackReference
+	@ManyToOne
+	@JoinColumn(name="fkClienteEndereco")
 	private Cliente clienteEndereco;
+	
+	@ManyToOne
+	@JoinColumn(name="fkCidadeEndereco")
 	private Cidade cidade;
 	
 	public Endereco() {
