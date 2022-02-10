@@ -2,20 +2,35 @@ package com.gxdxy.seguradora.bean;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.time.LocalDateTime;
+import java.util.UUID;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="tbApolice")
 public class Apolice implements Serializable {
 	private static final long serialVersionUID = 1L;
 
-
-	private Integer id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private UUID id;
 	
 	//número deve ser gerado aleatoriamente e único
-	private Integer numero;
+	@Column(unique=true, length=10)
+	private String numero;
 	
-	private Date inicioVigencia;
-	private Date fimVigencia;
+	private LocalDateTime inicioVigencia;
+	private LocalDateTime fimVigencia;
+	
+	@Column(unique=true, length=7)
 	private String placaVeiculo;
+	
 	private BigDecimal valor;
 	
 	private Cliente clienteApolice;
@@ -24,7 +39,7 @@ public class Apolice implements Serializable {
 		
 	}
 
-	public Apolice(Integer id, Integer numero, Date inicioVigencia, Date fimVigencia, String placaVeiculo,
+	public Apolice(UUID id, String numero, LocalDateTime inicioVigencia, LocalDateTime fimVigencia, String placaVeiculo,
 			BigDecimal valor, Cliente cliente) {
 		super();
 		this.id = id;
@@ -36,35 +51,35 @@ public class Apolice implements Serializable {
 		this.clienteApolice = cliente;
 	}
 
-	public Integer getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 
-	public Integer getNumero() {
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(Integer numero) {
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
 
-	public Date getInicioVigencia() {
+	public LocalDateTime getInicioVigencia() {
 		return inicioVigencia;
 	}
 
-	public void setInicioVigencia(Date inicioVigencia) {
+	public void setInicioVigencia(LocalDateTime inicioVigencia) {
 		this.inicioVigencia = inicioVigencia;
 	}
 
-	public Date getFimVigencia() {
+	public LocalDateTime getFimVigencia() {
 		return fimVigencia;
 	}
 
-	public void setFimVigencia(Date fimVigencia) {
+	public void setFimVigencia(LocalDateTime fimVigencia) {
 		this.fimVigencia = fimVigencia;
 	}
 

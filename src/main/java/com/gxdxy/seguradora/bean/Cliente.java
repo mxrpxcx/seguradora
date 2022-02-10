@@ -3,16 +3,28 @@ package com.gxdxy.seguradora.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
 
+@Entity
+@Table(name="tbCliente")
 public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	private Integer id;
+	@Id
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private UUID id;
 	
 	private String nomeCompleto;
 	
 	//cpf deve ser válido e único na base
+	@Column(unique=true, length=11)
 	private String cpf;
 	
 	private List<Endereco> enderecos = new ArrayList<>();
@@ -23,18 +35,18 @@ public class Cliente implements Serializable {
 		
 	}
 
-	public Cliente(Integer id, String nomeCompleto, String cpf) {
+	public Cliente(UUID id, String nomeCompleto, String cpf) {
 		super();
 		this.id = id;
 		this.nomeCompleto = nomeCompleto;
 		this.cpf = cpf;
 	}
 
-	public Integer getId() {
+	public UUID getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(UUID id) {
 		this.id = id;
 	}
 
