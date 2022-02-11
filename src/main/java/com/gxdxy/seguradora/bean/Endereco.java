@@ -11,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
 @Table(name="tbEndereco")
@@ -102,6 +103,7 @@ public class Endereco implements Serializable {
 		this.cep = cep;
 	}
 
+	@JsonIgnore
 	public Cliente getCliente() {
 		return clienteEndereco;
 	}
@@ -110,6 +112,7 @@ public class Endereco implements Serializable {
 		this.clienteEndereco = cliente;
 	}
 
+	@JsonIgnore
 	public Cidade getCidade() {
 		return cidade;
 	}
