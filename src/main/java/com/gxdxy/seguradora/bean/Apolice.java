@@ -137,5 +137,12 @@ public class Apolice implements Serializable {
 			return false;
 		return true;
 	}
+
+	@Override
+	public String toString() {
+		return "Apolice [id=" + id + ", numero=" + numero + ", inicioVigencia=" + inicioVigencia + ", fimVigencia="
+				+ fimVigencia + ", placaVeiculo=" + placaVeiculo + ", valor=" + valor + ", clienteApolice="
+				+ clienteApolice + "]";
+	}
 	
 }

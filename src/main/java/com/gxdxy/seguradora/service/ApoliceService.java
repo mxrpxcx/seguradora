@@ -1,6 +1,7 @@
 package com.gxdxy.seguradora.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -23,6 +24,14 @@ public class ApoliceService {
 
 	public List<Apolice> listarTodos() {
 		return apoliceRepository.findAll();
+	}
+	
+	public Optional<Apolice> listarApolice(Integer id) {
+		return apoliceRepository.findById(id);
+	}
+
+	public void apagarApolice(Apolice apolice) {
+		apoliceRepository.delete(apolice);
 	}
 	
 }
