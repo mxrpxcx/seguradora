@@ -12,6 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
@@ -33,7 +34,7 @@ public class Cliente implements Serializable {
 	@OneToMany(mappedBy="clienteEndereco")
 	private List<Endereco> enderecos = new ArrayList<>();
 	
-	@JsonManagedReference
+	@JsonBackReference
 	@OneToMany(mappedBy="clienteApolice")
 	private List<Apolice> apolices = new ArrayList<>();
 	
