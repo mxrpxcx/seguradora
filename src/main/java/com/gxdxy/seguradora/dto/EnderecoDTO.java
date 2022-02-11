@@ -2,8 +2,6 @@ package com.gxdxy.seguradora.dto;
 
 import javax.validation.constraints.NotBlank;
 
-import com.gxdxy.seguradora.bean.Cliente;
-
 public class EnderecoDTO {
 
 	@NotBlank

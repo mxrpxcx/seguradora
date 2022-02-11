@@ -1,5 +1,7 @@
 package com.gxdxy.seguradora.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,20 @@ public class ClienteService {
 	@Transactional
 	public Cliente salvar(Cliente cliente) {
 		return clienteRepository.save(cliente);
+	}
+
+	public boolean cpfExistente(String cpf) {
+		
+		if(clienteRepository.findByCpf(cpf)!=null) {
+			return true;
+		} else {
+			return false;
+		}
+		
+	}
+
+	public List<Cliente> listarTodos() {
+		return clienteRepository.findAll();
 	}
 
 }

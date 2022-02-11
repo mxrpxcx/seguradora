@@ -1,5 +1,7 @@
 package com.gxdxy.seguradora.controller;
 
+import java.util.List;
+
 import javax.validation.Valid;
 
 import org.springframework.beans.BeanUtils;
@@ -7,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,10 +29,22 @@ public class ClienteController {
 	
 	@PostMapping
 	public ResponseEntity<Object> salvar(@RequestBody @Valid ClienteDTO clienteDTO){
+		
+		if(clienteService.cpfExistente(clienteDTO.getCpf())) {
+			return ResponseEntity
+					.status(HttpStatus.CONFLICT)
+					.body("[Erro ao salvar cliente] CPF já existente!");
+		}
+		
 		Cliente cliente = new Cliente();
 		BeanUtils.copyProperties(clienteDTO, cliente);
 
 		return ResponseEntity.status(HttpStatus.CREATED).body(clienteService.salvar(cliente));
+	}
+	
+	@GetMapping
+	public ResponseEntity<List<Cliente>> listarTodos(){
+		return ResponseEntity.status(HttpStatus.OK).body(clienteService.listarTodos());
 	}
 	
 }
