@@ -1,12 +1,14 @@
 package com.gxdxy.seguradora.dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-public class ApoliceDTO {
+public class ApoliceDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 		@NotBlank
 		private LocalDateTime inicioVigencia;

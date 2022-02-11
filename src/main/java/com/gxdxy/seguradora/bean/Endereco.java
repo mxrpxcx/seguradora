@@ -1,7 +1,6 @@
 package com.gxdxy.seguradora.bean;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,8 +18,9 @@ public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private UUID id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
+	
 	private String logradouro;
 	private String numero;
 	private String complemento;
@@ -40,7 +40,7 @@ public class Endereco implements Serializable {
 		
 	}
 
-	public Endereco(UUID id, String logradouro, String numero, String complemento, String bairro, String cep,
+	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep,
 			Cliente cliente, Cidade cidade) {
 		super();
 		this.id = id;
@@ -54,11 +54,11 @@ public class Endereco implements Serializable {
 		
 	}
 
-	public UUID getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

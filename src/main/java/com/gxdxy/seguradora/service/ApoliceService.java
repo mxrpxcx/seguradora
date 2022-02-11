@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.gxdxy.seguradora.bean.Apolice;
-import com.gxdxy.seguradora.bean.Cliente;
 import com.gxdxy.seguradora.repository.ApoliceRepository;
 
 @Service

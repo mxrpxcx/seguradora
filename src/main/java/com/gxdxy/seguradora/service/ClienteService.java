@@ -1,6 +1,7 @@
 package com.gxdxy.seguradora.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import javax.transaction.Transactional;
 
@@ -33,6 +34,10 @@ public class ClienteService {
 
 	public List<Cliente> listarTodos() {
 		return clienteRepository.findAll();
+	}
+
+	public Optional<Cliente> listarCliente(Integer id) {
+		return clienteRepository.findById(id);
 	}
 
 }

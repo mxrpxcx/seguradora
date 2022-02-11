@@ -1,8 +1,11 @@
 package com.gxdxy.seguradora.dto;
 
+import java.io.Serializable;
+
 import javax.validation.constraints.NotBlank;
 
-public class EnderecoDTO {
+public class EnderecoDTO implements Serializable {
+	private static final long serialVersionUID = 1L;
 
 	@NotBlank
 	private String logradouro;

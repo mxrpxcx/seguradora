@@ -3,7 +3,6 @@ package com.gxdxy.seguradora.bean;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -22,8 +21,8 @@ public class Apolice implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private UUID id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
 	
 	//número deve ser gerado aleatoriamente e único
 	@Column(unique=true, length=10)
@@ -46,7 +45,7 @@ public class Apolice implements Serializable {
 		
 	}
 
-	public Apolice(UUID id, String numero, LocalDateTime inicioVigencia, LocalDateTime fimVigencia, String placaVeiculo,
+	public Apolice(Integer id, String numero, LocalDateTime inicioVigencia, LocalDateTime fimVigencia, String placaVeiculo,
 			BigDecimal valor, Cliente cliente) {
 		super();
 		this.id = id;
@@ -58,11 +57,11 @@ public class Apolice implements Serializable {
 		this.clienteApolice = cliente;
 	}
 
-	public UUID getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

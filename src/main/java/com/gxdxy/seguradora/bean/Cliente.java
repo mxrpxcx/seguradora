@@ -3,7 +3,6 @@ package com.gxdxy.seguradora.bean;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -21,8 +20,8 @@ public class Cliente implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private UUID id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
 	
 	private String nomeCompleto;
 	
@@ -42,18 +41,18 @@ public class Cliente implements Serializable {
 		
 	}
 
-	public Cliente(UUID id, String nomeCompleto, String cpf) {
+	public Cliente(Integer id, String nomeCompleto, String cpf) {
 		super();
 		this.id = id;
 		this.nomeCompleto = nomeCompleto;
 		this.cpf = cpf;
 	}
 
-	public UUID getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 

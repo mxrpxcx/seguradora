@@ -1,7 +1,6 @@
 package com.gxdxy.seguradora.bean;
 
 import java.io.Serializable;
-import java.util.UUID;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -19,8 +18,9 @@ public class Cidade implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
-	private UUID id;
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Integer id;
+	
 	private String nome;
 	
 	@JsonManagedReference
@@ -32,18 +32,18 @@ public class Cidade implements Serializable {
 		
 	}
 
-	public Cidade(UUID id, String nome, UnidadeFederal unidadeFederal) {
+	public Cidade(Integer id, String nome, UnidadeFederal unidadeFederal) {
 		super();
 		this.id = id;
 		this.nome = nome;
 		this.unidadeFederal = unidadeFederal;
 	}
 
-	public UUID getId() {
+	public Integer getId() {
 		return id;
 	}
 
-	public void setId(UUID id) {
+	public void setId(Integer id) {
 		this.id = id;
 	}
 
