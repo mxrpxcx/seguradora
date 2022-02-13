@@ -112,7 +112,6 @@ public class Endereco implements Serializable {
 		this.clienteEndereco = cliente;
 	}
 
-	@JsonIgnore
 	public Cidade getCidade() {
 		return cidade;
 	}

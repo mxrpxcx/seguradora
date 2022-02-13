@@ -31,7 +31,7 @@ public class Apolice implements Serializable {
 	private LocalDateTime inicioVigencia;
 	private LocalDateTime fimVigencia;
 	
-	@Column(unique=true, length=7)
+	@Column(length=7)
 	private String placaVeiculo;
 	
 	private BigDecimal valor;
