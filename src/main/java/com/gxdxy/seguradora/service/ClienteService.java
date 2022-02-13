@@ -40,6 +40,7 @@ public class ClienteService {
 		return clienteRepository.findById(id);
 	}
 
+	@Transactional
 	public void apagarCliente(Cliente cliente) {
 		clienteRepository.delete(cliente);
 	}

@@ -7,8 +7,6 @@ import java.time.LocalDateTime;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
-import com.gxdxy.seguradora.bean.Cliente;
-
 public class ApoliceDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 

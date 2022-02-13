@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -68,14 +69,18 @@ public class ApoliceController {
 	@GetMapping("/{id}")
 	public ResponseEntity<Object> listarApolice(@PathVariable(value = "id") Integer id) {
 		Optional<Apolice> apoliceOptional = apoliceService.listarApolice(id);
-		StringBuilder response = new StringBuilder("Informações: ");
-		response.append(System.getProperty("line.separator"));
 
 		if (!apoliceOptional.isPresent()) {
 			return ResponseEntity.status(HttpStatus.NOT_FOUND)
 					.body("[Erro ao buscar apolice] Documento não encontrado no sistema");
 		}
-
+		
+		StringBuilder response = new StringBuilder("Informações: ");
+		response.append(System.getProperty("line.separator"));
+		
+		response.append("Cliente: " + apoliceOptional.get().getCliente().getNomeCompleto());
+		response.append(System.getProperty("line.separator"));
+		
 		if (apoliceOptional.get().getFimVigencia().isBefore(LocalDateTime.now())) {
 			Integer dias = apoliceOptional.get().getFimVigencia().getDayOfMonth() - LocalDateTime.now().getDayOfMonth();
 
@@ -102,12 +107,13 @@ public class ApoliceController {
 		} else {
 			response.append("Apólice vence hoje");
 		}
-
+		
 		response.append(System.getProperty("line.separator"));
 		response.append("Placa do veículo: " + apoliceOptional.get().getPlacaVeiculo());
 		response.append(System.getProperty("line.separator"));
 		response.append("Valor: " + apoliceOptional.get().getValor());
-
+		
+		
 		return ResponseEntity.status(HttpStatus.OK).body(response);
 	}
 
@@ -122,6 +128,23 @@ public class ApoliceController {
 
 		apoliceService.apagarApolice(apoliceOptional.get());
 		return ResponseEntity.status(HttpStatus.OK).body("Documento apagado do sistema com sucesso");
+	}
+	
+	@PutMapping("/{id}")
+	public ResponseEntity<Object> atualizarApolice(@PathVariable(value="id") Integer id,
+			@RequestBody @Valid ApoliceDTO apoliceDTO){
+		Optional<Apolice> apoliceOptional = apoliceService.listarApolice(id);
+			if(!apoliceOptional.isPresent()) {
+				return ResponseEntity.status(HttpStatus.NOT_FOUND).body("[Erro ao buscar documento] Apolice não encontrada no sistema");
+			}
+			
+		Apolice apolice = new Apolice();
+		BeanUtils.copyProperties(apoliceDTO, apolice);
+		apolice.setId(apoliceOptional.get().getId());
+		apolice.setNumero(apoliceOptional.get().getNumero());
+		
+		return ResponseEntity.status(HttpStatus.OK).body(apoliceService.salvar(apolice));
+		
 	}
 
 }

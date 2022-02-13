@@ -30,6 +30,7 @@ public class ApoliceService {
 		return apoliceRepository.findById(id);
 	}
 
+	@Transactional
 	public void apagarApolice(Apolice apolice) {
 		apoliceRepository.delete(apolice);
 	}
