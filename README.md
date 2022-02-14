@@ -10,6 +10,7 @@ Instruções:
 3 Ela roda na porta 8181, é possível alterar a porta também no application.properties
 
 4 Ao executar o projeto, as tabelas serão populadas com alguns dados para teste, se tentar executar novamente irá crashar
+
 4.1 Apague a base de dados "seguradora_db" e crie novamente, então execute novamente o projeto
 
 Problemas conhecidos e ainda não resolvidos:
